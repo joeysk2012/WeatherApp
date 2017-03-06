@@ -1,6 +1,21 @@
 /**
  * Created by Joe on 12/8/2016.
  */
+
+/*functions start*/
+var swap = true;
+function standardToMetric(){
+if (swap===false){
+    $("#f").html(f);
+    swap=true;
+    }
+    else{
+    $("#f").html(c);
+    swap=false;
+    }
+}
+
+/*functions end*/
     // this code is the code for the initial weather check
         $(document).ready(function () {
             var lon;
@@ -20,7 +35,7 @@
             var wind = data1.wind.speed;
             f = Math.round((kelvin * (9/5)-459.67)*10)/10+" °F";
             c = Math.round((kelvin-273.15)*10)/10+" °C";
-            var swap = true;
+            
 
      //store in variables
             $("#city").html(city);
@@ -28,19 +43,9 @@
             $("#type").html(type);
             $("#wind").html(wind);
             $("#f").html(f);
-            $("#change").click(function(){
-            if (swap===false){
-                $("#f").html(c);
-                swap=true;
-            }
-            else{
-                $("#f").html(f);
-                swap=false;
-            }
+            document.getElementById('change').onclick=standardToMetric;
+                
             });
-                }
-
-            );
       //get city from form input
                 $("#getcity").click(function(){
                     var location = $('#stateInput').val();
@@ -64,16 +69,7 @@
                             $("#type").html(type);
                             $("#wind").html(wind);
                             $("#f").html(f);
-                            $("#change").click(function(){
-                                if (swap===false){
-                                    $("#f").html(c);
-                                    swap=true;
-                                }
-                                else{
-                                    $("#f").html(" " + f);
-                                    swap=false;
-                                }
-                            });
+                            document.getElementById('change').onclick=standardToMetric
                         }
 
                     );
